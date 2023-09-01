@@ -1,5 +1,5 @@
 const express = require("express");
-const { usersAuth, usersSignIn, usersCreate } = require("./users.controller");
+const { httpUsersAuth, httpUsersSignIn, httpUsersCreate } = require("./users.controller");
 const { createUserValidator, signInValidator } = require("../../validators/validators");
 const {
   handleValidationErrors,
@@ -14,15 +14,15 @@ usersRouter.post(
   createUserValidator,
   handleValidationErrors,
   checkAuth,
-  usersCreate
+  httpUsersCreate
 );
 
 //Authorization
-usersRouter.post("/sign-in", signInValidator, handleValidationErrors, usersSignIn);
+usersRouter.post("/sign-in", signInValidator, handleValidationErrors, httpUsersSignIn);
 
 
 //Get user info (check auth)
-usersRouter.get("/auth",checkAuth, usersAuth);
+usersRouter.get("/auth",checkAuth, httpUsersAuth);
 
 
 module.exports = usersRouter;

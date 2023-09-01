@@ -7,7 +7,7 @@ const {
 } = require("../../models/user/user.model");
 
 //Sign up
-async function usersCreate(req, res) {
+async function httpUsersCreate(req, res) {
   try {
     const user_name = req.body.user_name;
     const password = req.body.password;
@@ -30,7 +30,7 @@ async function usersCreate(req, res) {
 }
 
 //Sign in
-async function usersSignIn(req, res) {
+async function httpUsersSignIn(req, res) {
   try {
     const user = await findUser(req.body.user_name);
     if (!user) {
@@ -64,7 +64,7 @@ async function usersSignIn(req, res) {
 }
 
 //Authorization
-async function usersAuth(req, res) {
+async function httpUsersAuth(req, res) {
   try {
     const user = await findUserById(req.userId);
     if (user) {
@@ -77,7 +77,7 @@ async function usersAuth(req, res) {
 }
 
 module.exports = {
-  usersCreate,
-  usersSignIn,
-  usersAuth,
+  httpUsersCreate,
+  httpUsersSignIn,
+  httpUsersAuth,
 };
