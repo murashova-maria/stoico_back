@@ -4,6 +4,7 @@ const { createUserValidator } = require("../../validators/validators");
 const {
   handleValidationErrors,
 } = require("../../utils/handleValidationErrors");
+const { checkAuth } = require("../../utils/checkAuth");
 
 const usersRouter = express.Router();
 
@@ -12,6 +13,7 @@ usersRouter.post(
   "/create",
   createUserValidator,
   handleValidationErrors,
+  checkAuth,
   usersCreate
 );
 
