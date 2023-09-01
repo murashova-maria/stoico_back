@@ -1,0 +1,24 @@
+{
+  "name": "stoico_back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "watch": "node src/index.js",
+    "cluster": "pm2 start src/index.js -n stoico -i max",
+    "stop-cluster": "pm2 stop stoico && pm2 delete stoico"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "pm2": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
