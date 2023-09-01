@@ -22,7 +22,7 @@ usersRouter.post("/sign-in", signInValidator, handleValidationErrors, usersSignI
 
 
 //Get user info (check auth)
-usersRouter.get("/auth", usersAuth);
+usersRouter.get("/auth",checkAuth, usersAuth);
 
 
 module.exports = usersRouter;

@@ -19,7 +19,15 @@ const findUser = async (user_name) => {
     return user
 }
 
+
+const findUserById = async (_id) => {
+  const user = await UserModel.findOne({_id})
+  const {passwordHash: h, ...userData} = user._doc
+  return userData
+}
+
 module.exports = {
     createUser,
-    findUser
+    findUser,
+    findUserById
 }
