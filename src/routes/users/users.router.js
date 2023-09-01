@@ -1,6 +1,6 @@
 const express = require("express");
 const { usersAuth, usersSignIn, usersCreate } = require("./users.controller");
-const { createUserValidator } = require("../../validators/validators");
+const { createUserValidator, signInValidator } = require("../../validators/validators");
 const {
   handleValidationErrors,
 } = require("../../utils/handleValidationErrors");
@@ -18,7 +18,7 @@ usersRouter.post(
 );
 
 //Authorization
-usersRouter.post("/sign-in", usersSignIn);
+usersRouter.post("/sign-in", signInValidator, handleValidationErrors, usersSignIn);
 
 
 //Get user info (check auth)

@@ -7,6 +7,12 @@ const createUserValidator = [
     body("password", "Invalid password format").isString().isLength({min: 6}),
 ]
 
+const signInValidator = [
+    body("user_name", "Invalid user credentials").isString().isLength({min: 5}),
+    body("password", "Invalid user credentials").isString().isLength({min: 6}),
+]
+
 module.exports = {
-    createUserValidator
+    createUserValidator,
+    signInValidator
 }

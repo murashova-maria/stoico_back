@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
 const UserModel = require("./user.mongo");
 
 const createUser = async (user_name, password) => {
@@ -10,19 +9,17 @@ const createUser = async (user_name, password) => {
     passwordHash,
   });
   const user = await doc.save();
-  const token = jwt.sign(
-    {
-      _id: user._id,
-    },
-    "secret123",
-    {
-      expiresIn: "30d",
-    }
-  );
   const { passwordHash: h, ...userData } = user._doc;
-  return { ...userData, token }
+  return userData
 };
 
+
+const findUser = async (user_name) => {
+    const user = await UserModel.findOne({user_name})
+    return user
+}
+
 module.exports = {
-    createUser
+    createUser,
+    findUser
 }
