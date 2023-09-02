@@ -6,9 +6,7 @@ const api = require("./api")
 const app = express()
 
 //CORS
-app.use(cors({
-    origin: "http://localhost:3000"
-}))
+app.use(cors())
 
 //JSON converting
 app.use(express.json())
