@@ -25,8 +25,23 @@ const getPostById = async (_id) => {
     return post
 }
 
+
+const updateById = async (_id, title, description, content) => {
+    const post = await PostModel.findOneAndUpdate({
+        _id
+    }, {
+        title,
+        description,
+        content
+    }, {
+        new: true
+    })
+    return post
+}
+
 module.exports = {
     getAllPosts,
     createPost,
-    getPostById
+    getPostById,
+    updateById
 }

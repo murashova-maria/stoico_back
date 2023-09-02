@@ -1,4 +1,9 @@
-const { createPost, getAllPosts, getPostById } = require("../../models/post/post.model");
+const {
+  createPost,
+  getAllPosts,
+  getPostById,
+  updateById,
+} = require("../../models/post/post.model");
 
 async function httpCreatePost(req, res) {
   try {
@@ -40,8 +45,27 @@ async function httpGetPostById(req, res) {
   }
 }
 
+async function httpUpdatePostById(req, res) {
+  try {
+    const id = req.params.id;
+    const title = req.body.title;
+    const description = req.body.description;
+    const content = req.body.content;
+    const post = await updateById(id, title, description, content);
+    if (!post) {
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    return res.json(post);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+
 module.exports = {
   httpGetPostById,
   httpGetAllPosts,
   httpCreatePost,
+  httpUpdatePostById,
 };
