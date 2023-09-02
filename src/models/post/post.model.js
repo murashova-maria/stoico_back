@@ -19,7 +19,14 @@ const getAllPosts = async () => {
     return posts
 }
 
+
+const getPostById = async (_id) => {
+    const post = await PostModel.find({_id})
+    return post
+}
+
 module.exports = {
+    getAllPosts,
     createPost,
-    getAllPosts
+    getPostById
 }
