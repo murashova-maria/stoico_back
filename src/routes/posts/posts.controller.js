@@ -3,6 +3,7 @@ const {
   getAllPosts,
   getPostById,
   updateById,
+  deleteById,
 } = require("../../models/post/post.model");
 
 async function httpCreatePost(req, res) {
@@ -36,7 +37,7 @@ async function httpGetPostById(req, res) {
     const postId = req.params.id;
     const post = await getPostById(postId);
     if (!post) {
-      return res.status(500).json({ error: "Internal server error" });
+      return res.status(500).json({ error: "Post not found" });
     }
     res.json(post);
   } catch (e) {
@@ -45,7 +46,7 @@ async function httpGetPostById(req, res) {
   }
 }
 
-async function httpUpdatePostById(req, res) {
+async function httpUpdatePost(req, res) {
   try {
     const id = req.params.id;
     const title = req.body.title;
@@ -62,10 +63,25 @@ async function httpUpdatePostById(req, res) {
   }
 }
 
+async function httpDeletePost(req, res) {
+  try {
+    const postId = req.params.id;
+    const post = await deleteById(postId);
+    if (!post) {
+      return res.status(500).json({ error: "Post not found" });
+    }
+    res.json({ message: "Successfully deleted" });
+  } catch (e) {
+    return res
+      .status(500)
+      .json({ error: "Coudn't delete a post with specified id" });
+  }
+}
 
 module.exports = {
   httpGetPostById,
   httpGetAllPosts,
   httpCreatePost,
-  httpUpdatePostById,
+  httpUpdatePost,
+  httpDeletePost,
 };

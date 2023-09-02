@@ -8,7 +8,8 @@ const {
   httpCreatePost,
   httpGetAllPosts,
   httpGetPostById,
-  httpUpdatePostById,
+  httpUpdatePost,
+  httpDeletePost,
 } = require("./posts.controller");
 
 const postsRouter = express.Router();
@@ -19,15 +20,6 @@ postsRouter.get("", httpGetAllPosts);
 //Get post by id
 postsRouter.get("/:id", httpGetPostById);
 
-//Update by id
-postsRouter.patch(
-  "/:id",
-  checkAuth,
-  createPostValidator,
-  handleValidationErrors,
-  httpUpdatePostById
-);
-
 //Create post
 postsRouter.post(
   "",
@@ -36,5 +28,17 @@ postsRouter.post(
   handleValidationErrors,
   httpCreatePost
 );
+
+//Update post
+postsRouter.patch(
+  "/:id",
+  checkAuth,
+  createPostValidator,
+  handleValidationErrors,
+  httpUpdatePost
+);
+
+//Delete post
+postsRouter.delete("/:id", checkAuth, httpDeletePost);
 
 module.exports = postsRouter;

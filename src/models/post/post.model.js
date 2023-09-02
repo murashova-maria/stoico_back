@@ -21,7 +21,7 @@ const getAllPosts = async () => {
 
 
 const getPostById = async (_id) => {
-    const post = await PostModel.find({_id})
+    const post = await PostModel.findOne({_id})
     return post
 }
 
@@ -39,9 +39,20 @@ const updateById = async (_id, title, description, content) => {
     return post
 }
 
+
+
+
+const deleteById = async (_id) => {
+    const post = await PostModel.findOneAndDelete({_id})
+    return post
+}
+
+
+
 module.exports = {
     getAllPosts,
     createPost,
     getPostById,
-    updateById
+    updateById,
+    deleteById
 }
