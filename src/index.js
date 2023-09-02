@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const app = require("./app");
 require("dotenv").config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000
 const server = http.createServer(app);
 
-const MONGO_URL = process.env.MONGODB_URL;
+const MONGO_URL = process.env.MONGODB_URL
 
 mongoose.connection.once("open", () => console.log("Connected to MongoDB"));
 
