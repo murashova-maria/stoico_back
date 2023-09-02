@@ -1,9 +1,9 @@
-const postModel = require("./post.mongo")
+const PostModel = require("./post.mongo")
 
 
 
 const createPost = async (title, description, content) => {
-    const doc = new postModel({
+    const doc = new PostModel({
         title,
         description,
         content
@@ -13,6 +13,13 @@ const createPost = async (title, description, content) => {
     return post
 }
 
+
+const getAllPosts = async () => {
+    const posts = await PostModel.find({})
+    return posts
+}
+
 module.exports = {
-    createPost
+    createPost,
+    getAllPosts
 }
