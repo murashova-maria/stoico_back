@@ -15,7 +15,7 @@ const createPost = async (title, description, content) => {
 
 
 const getAllPosts = async () => {
-    const posts = await PostModel.find({})
+    const posts = await PostModel.find({}).select(['-content'])
     return posts
 }
 
