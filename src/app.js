@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
         cb(null, "uploads")
     },
     filename: (_, file, cb) => {
-        const name = getUploadFileName(file.originalname, "uploads")
+        const name = getUploadFileName(file?.originalname || "file", "uploads")
         cb(null, name)
     }
 })
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 
 //Uploads
 app.post("/v1/upload", checkAuth, upload.single("image"), (req, res) => {
-    const fileName = req.file.originalname
+    const fileName = req.file?.originalname || "file"
     res.json({
         url: `/uploads/${getUploadFileName(fileName, "uploads", true)}`
     })
